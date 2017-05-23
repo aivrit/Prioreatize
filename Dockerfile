@@ -47,11 +47,11 @@ WORKDIR /opt/mean.js
 # and utilities docker container cache to not needing to rebuild
 # and install node_modules/ everytime we build the docker, but only
 # when the local package.json file changes.
-# Install npm packages
+# Install npm packageps
 COPY package.json /opt/mean.js/package.json
 RUN npm install --quiet && npm cache clean
 
-# Install bower packages
+# Install bower packageps
 COPY bower.json /opt/mean.js/bower.json
 COPY .bowerrc /opt/mean.js/.bowerrc
 RUN bower install --quiet --allow-root --config.interactive=false
