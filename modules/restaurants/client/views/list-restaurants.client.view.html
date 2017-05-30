@@ -1,0 +1,14 @@
+<section>
+  <div class="page-header">
+    <h1>Restaurants</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="restaurant in vm.restaurants"
+       ui-sref="restaurants.view({ restaurantId: restaurant._id })"
+       class="list-group-item">
+      <h4 class="list-group-item-heading" ng-bind="restaurant.name"></h4>
+      <h6>{{restaurant.stars}} stars</h6>
+    </a>
+
+  </div>
+</section>
