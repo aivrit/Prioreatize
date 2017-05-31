@@ -10,6 +10,9 @@ var mongoose = require('mongoose'),
  * Restaurant Schema
  */
 var RestaurantSchema = new Schema({
+  _id: {
+    type: Schema.ObjectId
+  },
   name: {
     type: String,
     default: '',

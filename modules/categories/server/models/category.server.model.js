@@ -15,6 +15,9 @@ var CategorySchema = new Schema({
     default: '',
     required: 'Please fill Category name',
     trim: true
+  },
+  rank_name: {
+    type: String
   }
 });
 
