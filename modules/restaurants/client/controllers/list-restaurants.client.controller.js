@@ -5,12 +5,15 @@
     .module('restaurants')
     .controller('RestaurantsListController', RestaurantsListController);
 
-  RestaurantsListController.$inject = ['RestaurantsService', '$scope', '$route', '$routeParams'];
+  RestaurantsListController.$inject = ['RestaurantsService', '$scope', '$route', '$routeParams', '$location'];
 
-  function RestaurantsListController(RestaurantsService, $scope, $route, $routeParams) {
+  function RestaurantsListController(RestaurantsService, $scope, $route, $routeParams, $location) {
     var vm = this;
     var params = $routeParams;
     vm.params = params;
-    vm.restaurants = RestaurantsService.query();
+    var alt = $location.search();
+    var params_dict = {};
+
+    vm.restaurants = RestaurantsService.query(alt);
   }
 }());

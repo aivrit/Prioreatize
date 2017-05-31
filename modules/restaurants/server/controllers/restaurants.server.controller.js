@@ -1,4 +1,4 @@
-'use strict';
+
 
 /**
  * Module dependencies.
@@ -81,55 +81,83 @@ exports.delete = function(req, res) {
 /**
  * List of Restaurants
  */
+exports.list = function(req, res) {
+  getCategories(req, res);
+};
 
-function iterateOnParams(req, res, categories) {
-  var rank_names = [];
-  for (var categoryName in req.query) {
-    if (req.query.hasOwnProperty(categoryName)) {
-      // check if it is important or critical
-      if (req.query[categoryName] !== 0) {
-        for (var i = 0; i < categories.length(); i++) {
-          if (categories[i].name == categoryName) {
-            rank_names.push(categories[i].rank_name);
-            // add another push
-          }
-         }
-      }
-    }
-  }
-}
-
-function findRankNameInCategories(categories){
-  for (var i = 0; i < categories.length(); i++) {
-    // if (categories[i].name == )
-  }
-}
 function getCategories(req, res) {
-  Category.find({}).exec(function(err, categories)
-  {
+  Category.find().exec(function(err, categories) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
       iterateOnParams(req, res, categories);
-  }});
+    }});
 }
 
-exports.list = function(req, res) {
-
-  var complete = []
-  Restaurant.find().limit(100).sort('-price_rating').exec(function(err, restaurants) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(restaurants);
+function iterateOnParams(req, res, categories) {
+  var rank_names = [];
+  var categories_importance = [];
+  for (var categoryName in req.query) {
+    if (req.query.hasOwnProperty(categoryName)) {
+      // check if it is important or critical
+      if (req.query[categoryName] !== 0) {
+        // loop on categories and find the right one, then get it's rank name
+        for (var i = 0; i < categories.length; i++) {
+          if (categories[i].name == categoryName) {
+            rank_names.push(categories[i].rank_name);
+            categories_importance.push(req.query[categoryName]);
+          }
+        }
+      }
     }
-  });
-};
+  }
+  queryAll(req, res, rank_names, categories_importance);
+}
 
+function queryAll(req, res, rank_names, categories_importance) {
+  var limit_num = (1000 / rank_names.length);
+  var promises = [];
+  var joint_results = [];
+  for (var i = 0; i < rank_names.length; i++) {
+    promises.push(queryOne(rank_names[i], limit_num));
+  }
+  Promise.all(promises).then( values => {
+    for (var j = 0; j < values.length; j++) {
+      joint_results = joint_results.concat(values[j]);
+  }
+  multiplyAndSum(req, res, joint_results, rank_names, categories_importance);
+}).catch( reason => {
+    return res.status(400).send({
+      message: errorHandler.getErrorMessage(reason)
+    });
+});
+}
+
+function multiplyAndSum(req, res, joint_results, rank_names, categories_importance) {
+  var restaurant = [];
+  var sum = 0;
+  for (var i = 0; i < joint_results.length; i++) {
+    restaurant = joint_results[i];
+    sum = 0;
+    for (var j = 0; j < rank_names.length; j++) {
+      restaurant[rank_names[j]] = restaurant[rank_names[j]] * (1 + (categories_importance[j] / 1));
+      sum += parseFloat(restaurant[rank_names[j]]);
+    }
+    restaurant.sum = sum;
+  }
+  joint_results = joint_results.sort(function(obj1, obj2) {
+    // Desc
+    return obj2.sum - obj1.sum;
+  });
+  joint_results = joint_results.filter((resta, index, self) => self.findIndex((t) => {return t.name == resta.name && t._id.id[0] == resta._id.id[0];}) === index);
+  res.jsonp(joint_results);
+}
+
+function queryOne(rank_name, limit_num) {
+  return Restaurant.find().limit(limit_num).sort(`-${rank_name}`).exec();
+}
 
 /**
  * List of Restaurants searched
