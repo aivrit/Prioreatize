@@ -2,13 +2,25 @@
   <div class="page-header">
     <h1>Restaurants</h1>
   </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <label style="margin-right:0;">Filter:</label>
+              <input type="search" class="form-control input-sm"
+                     ng-model="search" placeholder="Filter Restaurants..."/>
+            </div>
+          </form>
+      </div>
+    </div>
   <div class="list-group">
-    <a ng-repeat="restaurant in vm.restaurants"
+    <a ng-repeat="restaurant in vm.restaurants | filter:search as results"
        ui-sref="restaurants.view({ restaurantId: restaurant._id })"
        class="list-group-item">
       <h4 class="list-group-item-heading" ng-bind="restaurant.name"></h4>
+      <h6>{{restaurant.address}}</h6>
       <h6>{{restaurant.stars}} stars</h6>
     </a>
-
+    <h4 ng-if="results.length === 0">No results found...</h4>
   </div>
 </section>
