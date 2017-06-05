@@ -1,0 +1,45 @@
+span.restaurant_details{
+	margin-right: 10px;
+}
+span.restaurant_details:not(:first-child){
+	border-left: 1px solid #cccbcb;
+	padding-left: 10px;
+}
+
+span.glyphicon-star {
+	font-size: 21px;
+}
+span.glyphicon-star-empty {
+	font-size: 21px;
+	color: #bdc3c7;
+}
+span.glyphicon-star.half {
+	position: relative;
+}
+span.glyphicon-star.half:before {
+	 position: relative;
+	 z-index: 9;
+	 width: 47%;
+	 display: block;
+	 overflow: hidden;
+}
+span.glyphicon-star.half:after {
+	 content: '\e006';
+	 position: absolute;
+	 z-index: 8;
+	 color: #bdc3c7;
+	 top: 0;
+	 left: 0;
+}
+span.score {
+	margin-right: 10px;
+}
+div.rating {
+	display: inline-flex;
+}
+div.rating-stars {
+	display: inline-flex;
+}
+span.review-count {
+	margin-left: 10px;
+}

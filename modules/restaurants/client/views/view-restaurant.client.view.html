@@ -1,37 +1,41 @@
 <section>
   <div class="page-header">
     <h1>{{vm.restaurant.name}}</h1>
-    <div style="font-size: 14px">
-      <span style="margin-right: 10px;">
+    <div>
+      <span class="restaurant_details">
         <span class="glyphicon glyphicon-map-marker"></span>
-        <span>{{vm.restaurant.address}},{{vm.restaurant.city}}, {{vm.restaurant.state}}</span>
+        <span>{{vm.restaurant.address}}, {{vm.restaurant.city}}, {{vm.restaurant.state}}</span>
       </span>
-      |
-      <span style="border-left: 1px solid #e5e5e5; vertical-align: middle; margin-right: 10px">
+      <span class="restaurant_details">
         <span ng-repeat="category in vm.restaurant.categories">
-          {{category}}
+          {{category}}{{$last ? '' : ', '}}
         </span>
       </span>
     </div>
   </div>
   <div>
     <div class="page-header"><h2>Overview</h2></div>
-    <div class="content">
-      <div>
-        <span class="lead">{{vm.restaurant.stars}}</span>
+    <div class="rating">
+      <span class="lead score">{{vm.restaurant.stars}}</span>
+      <div class="rating-stars">
+        <span class="glyphicon glyphicon-star" ng-repeat="star in getrange(vm.restaurant.stars)"></span>
+        <span class="glyphicon glyphicon-star half"></span>
+        <span class="glyphicon glyphicon-star-empty" ng-repeat="empty in getrange(5 - vm.restaurant.stars)"></span>
+      </div>
+      <span class="review-count">{{vm.restaurant.review_count}} Reviews</span>
         <!--TODO: ADD RATING DISPLAY-->
         <!--TODO: DISPLAY REVIEWS COUNT-->
-      </div>
-      <div>
-        <!--TODO: DIV TI DISPLAY SCORE VARIATION IN REVIEWS-->
-        <ul>
-          <li>
-            <span></span>
-            <span></span>
-            <span></span>
-          </li>
-        </ul>
-      </div>
+    </div>
+    <div>
+      <!--TODO: DIV TI DISPLAY SCORE VARIATION IN REVIEWS-->
+      <ul class="rating-chart">
+        <li class="chart-row">
+          <span class="row-label"></span>
+          <span class="row-bar"></span>
+          <span class="row-count"></span>
+        </li>
+      </ul>
+    </div>
       <div>
         <!--TODO: DIV TO DISPLAY CATEGORY RATING-->
         <div>
@@ -49,7 +53,6 @@
         <p class="lead">meat: {{vm.restaurant.good_for_meat_rating}}</p>
         <p class="lead">fit for business meetings: {{vm.restaurant.good_for_business_rating}}</p>
       </div>
-    </div>
   </div>
   <div>
     <h1>Reviews</h1>
