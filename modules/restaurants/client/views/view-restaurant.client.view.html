@@ -1,19 +1,61 @@
 <section>
-  <div class="page-header"> </div>
-    <h1 ng-bind="vm.restaurant.name"></h1>
-  <p class="lead">{{vm.restaurant.address}},{{vm.restaurant.city}}, {{vm.restaurant.state}}</p>
-  <p class="lead">stars: {{vm.restaurant.stars}}</p>
-  <p class="lead">romantic: {{vm.restaurant.romantic_rating}}</p>
-  <p class="lead">food quality: {{vm.restaurant.food_quality_rating}}</p>
-  <p class="lead">service quality: {{vm.restaurant.service_quality_rating}}</p>
-  <p class="lead">fast: {{vm.restaurant.fast_rating}}</p>
-  <p class="lead">price: {{vm.restaurant.price_rating}}</p>
-  <p class="lead">big portions: {{vm.restaurant.big_dish_rating}}</p>
-  <p class="lead">vegeterian: {{vm.restaurant.good_for_vegeterian_rating}}</p>
-  <p class="lead">meat: {{vm.restaurant.good_for_meat_rating}}</p>
-  <p class="lead">fit for business meetings: {{vm.restaurant.good_for_business_rating}}</p>
+  <div class="page-header">
+    <h1>{{vm.restaurant.name}}</h1>
+    <div>
+      <span class="restaurant_details">
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <span>{{vm.restaurant.address}}, {{vm.restaurant.city}}, {{vm.restaurant.state}}</span>
+      </span>
+      <span class="restaurant_details">
+        <span ng-repeat="category in vm.restaurant.categories">
+          {{category}}{{$last ? '' : ', '}}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div>
+    <div class="page-header"><h2>Overview</h2></div>
+    <div class="rating">
+      <span class="lead score">{{vm.restaurant.stars}}</span>
+      <div class="rating-stars">
+        <span class="glyphicon glyphicon-star" ng-repeat="star in getrange(vm.restaurant.stars)"></span>
+        <span class="glyphicon glyphicon-star half"></span>
+        <span class="glyphicon glyphicon-star-empty" ng-repeat="empty in getrange(5 - vm.restaurant.stars)"></span>
+      </div>
+      <span class="review-count">{{vm.restaurant.review_count}} Reviews</span>
+        <!--TODO: ADD RATING DISPLAY-->
+        <!--TODO: DISPLAY REVIEWS COUNT-->
+    </div>
+    <div>
+      <!--TODO: DIV TI DISPLAY SCORE VARIATION IN REVIEWS-->
+      <ul class="rating-chart">
+        <li class="chart-row">
+          <span class="row-label"></span>
+          <span class="row-bar"></span>
+          <span class="row-count"></span>
+        </li>
+      </ul>
+    </div>
+      <div>
+        <!--TODO: DIV TO DISPLAY CATEGORY RATING-->
+        <div>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="lead">stars: {{vm.restaurant.stars}}</p>
+        <p class="lead">romantic: {{vm.restaurant.romantic_rating}}</p>
+        <p class="lead">food quality: {{vm.restaurant.food_quality_rating}}</p>
+        <p class="lead">service quality: {{vm.restaurant.service_quality_rating}}</p>
+        <p class="lead">fast: {{vm.restaurant.fast_rating}}</p>
+        <p class="lead">price: {{vm.restaurant.price_rating}}</p>
+        <p class="lead">big portions: {{vm.restaurant.big_dish_rating}}</p>
+        <p class="lead">vegeterian: {{vm.restaurant.good_for_vegeterian_rating}}</p>
+        <p class="lead">meat: {{vm.restaurant.good_for_meat_rating}}</p>
+        <p class="lead">fit for business meetings: {{vm.restaurant.good_for_business_rating}}</p>
+      </div>
+  </div>
+  <div>
+    <h1>Reviews</h1>
 
-
-
-
+  </div>
 </section>

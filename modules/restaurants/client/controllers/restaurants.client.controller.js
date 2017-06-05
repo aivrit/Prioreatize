@@ -10,13 +10,20 @@
 
   function RestaurantsController ($scope, $state, $window, Authentication, restaurant) {
     var vm = this;
-
     vm.authentication = Authentication;
     vm.restaurant = restaurant;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    $scope.getrange = function(n) {
+      var count = [];
+      for (var i = 0; i < Math.floor(n); i++) {
+        count.push(i);
+      }
+      return count;
+    };
 
     // Remove existing Restaurant
     function remove() {
