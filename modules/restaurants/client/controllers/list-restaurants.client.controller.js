@@ -12,8 +12,6 @@
     var params = $routeParams;
     vm.params = params;
     var alt = $location.search();
-    var params_dict = {};
-
     vm.restaurants = RestaurantsService.query(alt);
   }
 }());

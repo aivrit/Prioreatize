@@ -82,8 +82,37 @@ exports.delete = function(req, res) {
  * List of Restaurants
  */
 exports.list = function(req, res) {
-  getCategories(req, res);
+  var name = "";
+  var city = "";
+
+  if ("name" in req.query) {
+    name = req.query.name;
+  }
+
+  if ("city" in req.query) {
+    city = req.query.city;
+  }
+
+  if (name == "" && city == "") {
+    getCategories(req, res);
+  }
+  else {
+    searchByName(req, res, name, city);
+  }
 };
+
+function searchByName(req, res, name, city) {
+  Restaurant.find({ 'name': new RegExp(name, 'i'), 'city': new RegExp(city, 'i') }).limit(100).exec(function(err, restaurants) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(restaurants);
+    }
+  });
+}
+
 
 function getCategories(req, res) {
   Category.find().exec(function(err, categories) {
