@@ -6,9 +6,9 @@
     .module('restaurants')
     .controller('RestaurantsController', RestaurantsController);
 
-  RestaurantsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'restaurantResolve'];
+  RestaurantsController.$inject = ['ReviewsService', '$scope', '$state', '$window', 'Authentication', 'restaurantResolve'];
 
-  function RestaurantsController ($scope, $state, $window, Authentication, restaurant) {
+  function RestaurantsController (ReviewsService, $scope, $state, $window, Authentication, restaurant) {
     var vm = this;
     vm.authentication = Authentication;
     vm.restaurant = restaurant;
@@ -24,6 +24,8 @@
       }
       return count;
     };
+
+    vm.reviews = ReviewsService.query();
 
     // Remove existing Restaurant
     function remove() {

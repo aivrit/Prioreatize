@@ -81,7 +81,8 @@ exports.delete = function(req, res) {
  * List of Reviews
  */
 exports.list = function(req, res) {
-  Review.find().sort('-created').populate('user', 'displayName').exec(function(err, reviews) {
+  var restaurant_id = req.query.restaurantId;
+  Review.find({ 'business_id': '0a1BBSewiusfCalA9UVEYA' }).exec(function (err, reviews) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -90,6 +91,15 @@ exports.list = function(req, res) {
       res.jsonp(reviews);
     }
   });
+  // Review.find().sort('-created').populate('user', 'displayName').exec(function(err, reviews) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(reviews);
+  //   }
+  // });
 };
 
 /**
