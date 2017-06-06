@@ -29,13 +29,13 @@
             <input type="radio" name="nothing" id={{category.name}}"option0" autocomplete="off">
           </label>
           <label class="btn btn-primary">
-            <input type="radio" ng-value="0" name={{category.name}} id="{{category.name}}0" autocomplete="off" ng-checked="vm[category.name]==0"> don't care
+            <input type="radio" ng-value="0" name={{category.name}} id="{{category.name}}0" autocomplete="off" ng-model="selectedRadio" ng-change="changeRadio(category.name + 0)" ng-checked="vm[category.name]==0"> don't care
           </label>
           <label class="btn btn-success">
-            <input type="radio" ng-value="1" name={{category.name}} id="{{category.name}}1" autocomplete="off" ng-checked="vm[category.name]==1"> important
+            <input type="radio" ng-value="1" name={{category.name}} id="{{category.name}}1" autocomplete="off" ng-model="selectedRadio" ng-change="changeRadio(category.name + 1)" ng-checked="vm[category.name]==1"> important
           </label>
           <label class="btn btn-danger">
-            <input type="radio" ng-value="2" name={{category.name}} id="{{category.name}}2" autocomplete="off" ng-checked="vm[category.name]==2"> critical
+            <input type="radio" ng-value="2" name={{category.name}} id="{{category.name}}2" autocomplete="off" ng-model="selectedRadio" ng-change="changeRadio(category.name + 2)" ng-checked="vm[category.name]==2"> critical
           </label>
         </div>
       </div>
