@@ -43,7 +43,7 @@ div.restaurant-reviews h2 {
 div.restaurant-rating {
 	display: inline-flex;
 	font-size: 28px;
-	line-height: 32px;
+	line-height: 30px;
 }
 div.rating-stars {
 	display: inline-flex;
