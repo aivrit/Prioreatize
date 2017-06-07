@@ -9,7 +9,7 @@
   ReviewsService.$inject = ['$resource'];
 
   function ReviewsService($resource) {
-    return $resource('api/reviews/:reviewId', {
+    return $resource('/api/reviews/:reviewId', {
       reviewId: '@_id'
     }, {
       update: {

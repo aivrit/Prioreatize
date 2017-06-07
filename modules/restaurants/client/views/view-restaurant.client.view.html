@@ -13,49 +13,78 @@
       </span>
     </div>
   </div>
-  <div>
-    <div class="page-header"><h2>Overview</h2></div>
-    <div class="rating">
-      <span class="lead score">{{vm.restaurant.stars}}</span>
-      <div class="rating-stars">
-        <span class="glyphicon glyphicon-star" ng-repeat="star in getrange(vm.restaurant.stars)"></span>
-        <span class="glyphicon glyphicon-star half"></span>
-        <span class="glyphicon glyphicon-star-empty" ng-repeat="empty in getrange(5 - vm.restaurant.stars)"></span>
-      </div>
-      <span class="review-count">{{vm.restaurant.review_count}} Reviews</span>
-        <!--TODO: ADD RATING DISPLAY-->
-        <!--TODO: DISPLAY REVIEWS COUNT-->
-    </div>
-    <div>
-      <!--TODO: DIV TI DISPLAY SCORE VARIATION IN REVIEWS-->
-      <ul class="rating-chart">
-        <li class="chart-row">
-          <span class="row-label"></span>
-          <span class="row-bar"></span>
-          <span class="row-count"></span>
-        </li>
-      </ul>
-    </div>
-      <div>
-        <!--TODO: DIV TO DISPLAY CATEGORY RATING-->
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-        <p class="lead">stars: {{vm.restaurant.stars}}</p>
-        <p class="lead">romantic: {{vm.restaurant.romantic_rating}}</p>
-        <p class="lead">food quality: {{vm.restaurant.food_quality_rating}}</p>
-        <p class="lead">service quality: {{vm.restaurant.service_quality_rating}}</p>
-        <p class="lead">fast: {{vm.restaurant.fast_rating}}</p>
-        <p class="lead">price: {{vm.restaurant.price_rating}}</p>
-        <p class="lead">big portions: {{vm.restaurant.big_dish_rating}}</p>
-        <p class="lead">vegeterian: {{vm.restaurant.good_for_vegeterian_rating}}</p>
-        <p class="lead">meat: {{vm.restaurant.good_for_meat_rating}}</p>
-        <p class="lead">fit for business meetings: {{vm.restaurant.good_for_business_rating}}</p>
-      </div>
+  <div class="restaurant-img">
+
   </div>
-  <div>
-    <h1>Reviews</h1>
-    {{vm.reviews.length}}
+  <div class="page-header"><h2>Overview</h2></div>
+  <div class="restaurant-rating">
+    <span class="score">{{vm.restaurant.stars}}</span>
+    <div class="rating-stars">
+      <rating-stars stars={{vm.restaurant.stars}}></rating-stars>
+    </div>
+    <span class="review-count">{{vm.restaurant.review_count}} Reviews</span>
+  </div>
+  <div class="page-header rating-summary">
+    <div class="rating-summary-container">
+      <div class="rating-summary-container-up">
+        <div class="rating-category">
+          <span class="text">Food Quality</span>
+          <rating-stars stars={{vm.restaurant.food_quality_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Service Quality</span>
+          <rating-stars stars={{vm.restaurant.service_quality_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Fast</span>
+          <rating-stars stars={{vm.restaurant.fast_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Price</span>
+          <rating-stars stars={{vm.restaurant.price_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Big Portions</span>
+          <rating-stars stars={{vm.restaurant.big_dish_rating}}></rating-stars>
+        </div>
+      </div>
+      <div class="rating-summary-container-down">
+        <div class="rating-category">
+          <span class="text">Vegeterian</span>
+          <rating-stars stars={{vm.restaurant.good_for_vegeterian_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Meat</span>
+          <rating-stars stars={{vm.restaurant.good_for_meat_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Romantic</span>
+          <rating-stars stars={{vm.restaurant.romantic_rating}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Business Meetings</span>
+          <rating-stars stars={{vm.restaurant.good_for_business_rating}}></rating-stars>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="restaurant-reviews">
+    <h2>Reviews</h2>
+    <div class="review-container" ng-repeat="review in vm.reviews">
+      <div class="review-inner-container">
+        <div class="review-col-profile">
+          <div class="glyphicon glyphicon-user"></div>
+        </div>
+        <div class="review-col-data">
+          <div class="review-rating">
+            <rating-stars stars={{review.stars}}></rating-stars>
+            <span class="review-date">Reviewed on {{review.date}}</span>
+          </div>
+          <div class="review-content">
+            <p>{{review.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

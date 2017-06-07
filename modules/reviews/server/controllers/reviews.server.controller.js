@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Review = mongoose.model('Review'),
+  Restaurant = mongoose.model('Restaurant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -81,16 +82,26 @@ exports.delete = function(req, res) {
  * List of Reviews
  */
 exports.list = function(req, res) {
-  var restaurant_id = req.query.restaurantId;
-  Review.find({ 'business_id': '0a1BBSewiusfCalA9UVEYA' }).exec(function (err, reviews) {
+  var restaurant_id = req.query.id;
+  Restaurant.findById(restaurant_id).exec(function (err, restaurant) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(reviews);
+      var restaurant_business_id = restaurant._doc.business_id;
+      Review.find({ 'business_id': restaurant_business_id }).exec(function (err, reviews) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.jsonp(reviews);
+        }
+      });
     }
   });
+
   // Review.find().sort('-created').populate('user', 'displayName').exec(function(err, reviews) {
   //   if (err) {
   //     return res.status(400).send({

@@ -19,13 +19,13 @@
 
     $scope.getrange = function(n) {
       var count = [];
-      for (var i = 0; i < Math.floor(n); i++) {
+      for (var i = 0; i < n; i++) {
         count.push(i);
       }
       return count;
     };
 
-    vm.reviews = ReviewsService.query();
+    vm.reviews = ReviewsService.query({ id: restaurant._id });
 
     // Remove existing Restaurant
     function remove() {
@@ -59,4 +59,22 @@
       }
     }
   }
+
+  angular.module('restaurants').filter('round', function () {
+    return function (num) {
+      return Math.round(num);
+    };
+  });
+
+  angular.module('restaurants').filter('floor', function () {
+    return function (num) {
+      return Math.floor(num);
+    };
+  });
+
+  angular.module('restaurants').filter('modulu', function () {
+    return function (num) {
+      return num % 1 !== 0 ? 1 : 0;
+    };
+  });
 }());
