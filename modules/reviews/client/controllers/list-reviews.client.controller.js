@@ -5,11 +5,10 @@
     .module('reviews')
     .controller('ReviewsListController', ReviewsListController);
 
-  ReviewsListController.$inject = ['ReviewsService'];
+  ReviewsListController.$inject = ['ReviewsService', '$routeParams'];
 
-  function ReviewsListController(ReviewsService) {
+  function ReviewsListController(ReviewsService, $routeParams) {
     var vm = this;
-
-    vm.reviews = ReviewsService.query();
+    vm.reviews = ReviewsService.query($routeParams);
   }
 }());

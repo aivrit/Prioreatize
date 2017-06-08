@@ -19,25 +19,40 @@ var RestaurantSchema = new Schema({
     required: 'Please fill Restaurant name',
     trim: true
   },
-  romantic_rating: {
+  romantic: {
     type: String
   },
-  clean_rating: {
+  qualityscore: {
     type: String
   },
   good_for_meat_rating: {
     type: String
   },
-  good_for_vegeterian_rating: {
+  quality_of_service_score: {
     type: String
   },
-  price_rating: {
+  cheap: {
     type: String
   },
-  big_dish_rating: {
+  big_dish_score: {
     type: String
   },
-  service_rating: {
+  good_for_kids: {
+    type: String
+  },
+  casual: {
+    type: String
+  },
+  upscale: {
+    type: String
+  },
+  noise_level: {
+    type: String
+  },
+  wheelchair: {
+    type: String
+  },
+  fast_score: {
     type: String
   },
   user: {

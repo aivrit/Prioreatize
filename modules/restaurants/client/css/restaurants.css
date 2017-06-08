@@ -5,12 +5,7 @@ span.restaurant_details:not(:first-child){
 	border-left: 1px solid #cccbcb;
 	padding-left: 10px;
 }
-
-span.glyphicon-star {
-	font-size: 21px;
-}
 span.glyphicon-star-empty {
-	font-size: 21px;
 	color: #bdc3c7;
 }
 span.glyphicon-star.half {
@@ -33,13 +28,96 @@ span.glyphicon-star.half:after {
 }
 span.score {
 	margin-right: 10px;
+	font-weight: bold;
 }
-div.rating {
+div.page-header h1 {
+	font-weight: 900;
+}
+div.page-header h2 {
+	font-weight: 900;
+}
+div.restaurant-reviews h2 {
+	margin-bottom: 20px;
+	font-weight: 900;
+}
+div.restaurant-rating {
 	display: inline-flex;
+	font-size: 28px;
+	line-height: 30px;
 }
 div.rating-stars {
 	display: inline-flex;
 }
+div.review-rating {
+	margin-bottom: 10px;
+}
+div.review-rating span.review-date {
+	margin-left: 10px;
+}
 span.review-count {
 	margin-left: 10px;
+	font-size: 14px;
+	float: right;
+	padding-left: 15px;
+}
+div.review-container {
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #e5e5e5;
+}
+div.review-inner-container {
+	margin: 8px 0 4px;
+	overflow: visible;
+	display: flex;
+	flex-wrap: wrap;
+}
+div.review-col-profile {
+	flex: none;
+	width: 16.66666667%;
+	float: left;
+}
+div.glyphicon-user {
+	font-size: 50px;
+	margin-left: 20px;
+}
+div.review-col-data {
+	flex: none;
+	width: 75%;
+}
+div.rating-summary {
+	margin-bottom: 40px;
+}
+div.rating-summary-container {
+	/*text-align: center;*/
+	/*margin-bottom: 20px;*/
+}
+div.rating-summary-container-up {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: space-around;
+}
+div.rating-summary-container-down {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: space-around;
+}
+div.rating-category {
+	height: 75px;
+	width: 140px;
+}
+div.rating-category span.text {
+	display: inline-block;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+div.rating-category rating-stars {
+	display: inline-block;
+	font-size: 18px;
+}
+div.page-header {
+	border-bottom-color: #e5e5e5;
 }
