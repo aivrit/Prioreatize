@@ -17,14 +17,16 @@
 
   </div>
   <div class="page-header"><h2>Overview</h2></div>
-  <div class="restaurant-rating">
+  <div class="group">
+  <div class="overview-content">
+    <div class="restaurant-rating">
     <span class="score">{{vm.restaurant.stars}}</span>
     <div class="rating-stars">
       <rating-stars stars={{vm.restaurant.stars}}></rating-stars>
     </div>
     <span class="review-count">{{vm.restaurant.review_count}} Reviews</span>
   </div>
-  <div class="page-header rating-summary">
+    <div class="page-header rating-summary">
     <div class="rating-summary-container">
       <div class="rating-summary-container-up">
         <div class="rating-category">
@@ -67,6 +69,15 @@
         </div>
       </div>
     </div>
+  </div>
+  </div>
+  <aside class="overview-map">
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz6zrAfFcmWXKc5k5EoeP8hJX_YZUSiRY&callback=initMap">
+    </script>
+    {{vm.initMap()}}
+    <div id="map"></div>
+  </aside>
   </div>
   <div class="restaurant-reviews">
     <h2>Reviews</h2>
