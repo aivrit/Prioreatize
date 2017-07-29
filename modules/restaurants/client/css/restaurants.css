@@ -121,3 +121,27 @@ div.rating-category rating-stars {
 div.page-header {
 	border-bottom-color: #e5e5e5;
 }
+div.group:before,
+div.group:after {
+	content: "";
+	display: table;
+}
+div.group:after {
+	clear: both;
+}
+div.group {
+	clear: both;
+	*zoom: 1;
+}
+div.overview-content {
+	float: left;
+	width: 63%;
+}
+aside.overview-map{
+	float: right;
+	width: 30%;
+}
+div#map {
+	height: 400px;
+	width: 100%;
+}
