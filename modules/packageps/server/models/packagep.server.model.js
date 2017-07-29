@@ -15,6 +15,9 @@ var PackagepSchema = new Schema({
   },
   priorities: {
     type: []
+  },
+  userr: {
+    type: String
   }
 });
 

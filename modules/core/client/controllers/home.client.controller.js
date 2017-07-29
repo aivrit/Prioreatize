@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['CategoriesService', 'PackagepsService', '$scope'];
+  HomeController.$inject = ['CategoriesService', 'PackagepsService', '$scope', 'Authentication'];
 
-  function HomeController(CategoriesService, PackagepsService, $scope) {
+  function HomeController(CategoriesService, PackagepsService, $scope, Authentication) {
     var vm = this;
 
     vm.packages = PackagepsService.query();
@@ -25,6 +25,18 @@
           }
         }
       }
+    };
+
+    $scope.userfilter = function userfilter(item) {
+      if (item.hasOwnProperty('userr')){
+        if (!Authentication.user) {
+          return false;
+        }
+        if (item.userr !== Authentication.user.username) {
+          return false;
+        }
+      }
+      return true;
     };
 
     $scope.changeRadio = function changeRadio(id) {
