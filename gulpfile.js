@@ -126,31 +126,6 @@ gulp.task('watch:server:run-tests', function () {
   });
 });
 
-// CSS linting task
-gulp.task('csslint', function () {
-  return gulp.src(defaultAssets.client.css)
-    .pipe(plugins.csslint('.csslintrc'))
-    .pipe(plugins.csslint.formatter());
-    // Don't fail CSS issues yet
-    // .pipe(plugins.csslint.failFormatter());
-});
-
-// ESLint JS linting task
-gulp.task('eslint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    defaultAssets.client.js,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
-
-  return gulp.src(assets)
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
-});
-
 // JS minifying task
 gulp.task('uglify', function () {
   var assets = _.union(
@@ -438,10 +413,6 @@ gulp.task('protractor', ['webdriver_prep'], function () {
     });
 });
 
-// Lint CSS and JavaScript files.
-gulp.task('lint', function (done) {
-  runSequence('less', 'sass', ['csslint', 'eslint'], done);
-});
 
 // Lint project files and minify them into two production files.
 gulp.task('build', function (done) {
@@ -471,12 +442,12 @@ gulp.task('test:e2e', function (done) {
 });
 
 gulp.task('test:coverage', function (done) {
-  runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha:coverage', 'karma:coverage', done);
+  runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'mocha:coverage', 'karma:coverage', done);
 });
 
 // Run the project in development mode with node debugger enabled
 gulp.task('default', function (done) {
-  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], ['nodemon', 'watch'], done);
 });
 
 // Run the project in production mode

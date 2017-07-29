@@ -31,41 +31,49 @@
       <div class="rating-summary-container-up">
         <div class="rating-category">
           <span class="text">Food Quality</span>
-          <rating-stars stars={{vm.restaurant.food_quality_rating}}></rating-stars>
+          <rating-stars stars={{vm.restaurant.qualityscore}}></rating-stars>
         </div>
         <div class="rating-category">
           <span class="text">Service Quality</span>
-          <rating-stars stars={{vm.restaurant.service_quality_rating}}></rating-stars>
+          <rating-stars stars={{vm.restaurant.quality_of_service_score}}></rating-stars>
         </div>
         <div class="rating-category">
-          <span class="text">Fast</span>
-          <rating-stars stars={{vm.restaurant.fast_rating}}></rating-stars>
+          <span class="text">Fast Served</span>
+          <rating-stars stars={{vm.restaurant.fast_score}}></rating-stars>
         </div>
         <div class="rating-category">
-          <span class="text">Price</span>
-          <rating-stars stars={{vm.restaurant.price_rating}}></rating-stars>
+          <span class="text">Cheap</span>
+          <rating-stars stars={{vm.restaurant.cheap}}></rating-stars>
         </div>
         <div class="rating-category">
-          <span class="text">Big Portions</span>
-          <rating-stars stars={{vm.restaurant.big_dish_rating}}></rating-stars>
+          <span class="text">Large Portions</span>
+          <rating-stars stars={{vm.restaurant.big_dish_score}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Quiet</span>
+          <rating-stars stars={{vm.restaurant.noise_level}}></rating-stars>
         </div>
       </div>
       <div class="rating-summary-container-down">
         <div class="rating-category">
-          <span class="text">Vegeterian</span>
-          <rating-stars stars={{vm.restaurant.good_for_vegeterian_rating}}></rating-stars>
+          <span class="text">Kid Friendly</span>
+          <rating-stars stars={{vm.restaurant.good_for_kids}}></rating-stars>
         </div>
         <div class="rating-category">
-          <span class="text">Meat</span>
-          <rating-stars stars={{vm.restaurant.good_for_meat_rating}}></rating-stars>
+          <span class="text">Casual</span>
+          <rating-stars stars={{vm.restaurant.casual}}></rating-stars>
         </div>
         <div class="rating-category">
           <span class="text">Romantic</span>
-          <rating-stars stars={{vm.restaurant.romantic_rating}}></rating-stars>
+          <rating-stars stars={{vm.restaurant.romantic}}></rating-stars>
         </div>
         <div class="rating-category">
-          <span class="text">Business Meetings</span>
-          <rating-stars stars={{vm.restaurant.good_for_business_rating}}></rating-stars>
+          <span class="text">Upscale</span>
+          <rating-stars stars={{vm.restaurant.upscale}}></rating-stars>
+        </div>
+        <div class="rating-category">
+          <span class="text">Wheelchair Access</span>
+          <rating-stars stars={{vm.restaurant.wheelchair}}></rating-stars>
         </div>
       </div>
     </div>

@@ -131,7 +131,7 @@ function iterateOnParams(req, res, categories) {
   for (var categoryName in req.query) {
     if (req.query.hasOwnProperty(categoryName)) {
       // check if it is important or critical
-      if (req.query[categoryName] !== 0) {
+      if (req.query[categoryName] !== "0") {
         // loop on categories and find the right one, then get it's rank name
         for (var i = 0; i < categories.length; i++) {
           if (categories[i].name == categoryName) {
@@ -171,6 +171,9 @@ function multiplyAndSum(req, res, joint_results, rank_names, categories_importan
     restaurant = joint_results[i];
     sum = 0;
     for (var j = 0; j < rank_names.length; j++) {
+      if (restaurant[rank_names[j]] == undefined) {
+        restaurant[rank_names[j]] = 2.5;
+      }
       restaurant[rank_names[j]] = restaurant[rank_names[j]] * (1 + (categories_importance[j] / 1));
       sum += parseFloat(restaurant[rank_names[j]]);
     }
@@ -185,7 +188,7 @@ function multiplyAndSum(req, res, joint_results, rank_names, categories_importan
 }
 
 function queryOne(rank_name, limit_num) {
-  return Restaurant.find().limit(limit_num).sort(`-${rank_name}`).exec();
+  return Restaurant.find({'auto_tag': {$exists: true}}).limit(limit_num).sort(`-${rank_name}`).exec();
 }
 
 /**

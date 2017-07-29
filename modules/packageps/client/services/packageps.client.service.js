@@ -9,7 +9,7 @@
   PackagepsService.$inject = ['$resource'];
 
   function PackagepsService($resource) {
-    return $resource('api/packageps/:packagepId', {
+    return $resource('/api/packageps/:packagepId', {
       packagepId: '@_id'
     }, {
       update: {
