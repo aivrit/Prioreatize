@@ -6,9 +6,9 @@
     .module('restaurants')
     .controller('RestaurantsController', RestaurantsController);
 
-  RestaurantsController.$inject = ['ReviewsService', 'NgMap', 'GoogleMapsService', '$scope', '$state', '$window', 'Authentication', 'restaurantResolve'];
+  RestaurantsController.$inject = ['ReviewsService', '$scope', '$state', '$window', 'Authentication', 'restaurantResolve'];
 
-  function RestaurantsController (ReviewsService, GoogleMapsService, $scope, $state, $window, Authentication, restaurant) {
+  function RestaurantsController (ReviewsService, $scope, $state, $window, Authentication, restaurant) {
     var vm = this;
     console.log(vm.restaurant);
     vm.authentication = Authentication;
@@ -25,29 +25,6 @@
       }
       return count;
     };
-
-    // GoogleMapsService.initMap({ 'lat': vm.restaurant.latitude, 'lng': vm.restaurant.longitude });
-    // GoogleMapsService.query();
-    // $scope.initMap = function() {
-    //   alert('LOL');
-    //   console.log('LOL');
-    //   console.log(vm.restaurant);
-    //   var uluru = {lat: vm.restaurant.latitude, lng: vm.restaurant.longitude};
-    //   var map = new google.maps.Map(document.getElementById('map'), {
-    //     zoom: 4,
-    //     center: uluru
-    //   });
-    //   alert(map);
-    //   console.log(map);
-    //   var marker = new google.maps.Marker({
-    //     position: uluru,
-    //     map: map
-    //   });
-    //   alert(marker);
-    //   console.log(marker);
-    // };
-
-    $scope.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAz6zrAfFcmWXKc5k5EoeP8hJX_YZUSiRY';
 
     vm.reviews = ReviewsService.query({ id: restaurant._id });
 
