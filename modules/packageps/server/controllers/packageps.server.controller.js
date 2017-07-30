@@ -13,6 +13,28 @@ var path = require('path'),
  * Create a Packagep
  */
 exports.create = function(req, res) {
+  var list = new Array();
+  list.push(req.body.priorities[0]);
+  list.push(req.body.priorities[1]);
+  list.push(req.body.priorities[2]);
+  list.push(req.body.priorities[3]);
+  list.push(req.body.priorities[4]);
+  list.push(req.body.priorities[5]);
+  list.push(req.body.priorities[6]);
+  list.push(req.body.priorities[7]);
+  list.push(req.body.priorities[8]);
+  list.push(req.body.priorities[9]);
+  list.push(req.body.priorities[10]);
+  req.body.priorities = list;
+  list.forEach(function(element) {
+    for (var property in element) {
+      if (element.hasOwnProperty(property)) {
+        element[property] = parseInt(element[property]);
+      }
+    }
+  });
+
+  req.body.userr = req.user.username;
   var packagep = new Packagep(req.body);
   packagep.user = req.user;
 

@@ -22,7 +22,7 @@
       <div class="row">
         select a predefined package: </br>
         <div class="package-container" style="text-align: center; display: flex; text-align: center; justify-content: center;">
-          <div class="col" style="margin: 0px;" ng-repeat="package in vm.packages">
+          <div class="col" style="margin: 0px;" ng-repeat="package in vm.packages | filter:userfilter">
             <label class="btn btn-info" style="border-radius: 0px" ng-bind="package.name" ng-click="choosePackage(package)"/>
           </div>
         </div>

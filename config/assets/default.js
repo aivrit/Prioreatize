@@ -27,7 +27,9 @@ module.exports = {
         'public/lib/angular-route/angular-route.js',
         'public/lib/jquery/dist/jquery.min.js',
         'public/lib/bootstrap/dist/js/bootstrap.min.js',
-        'public/lib/ngmap/build/scripts/ng-map.min.js'
+        'public/lib/ngmap/build/scripts/ng-map.min.js',
+        'public/d3.min.js',
+        'public/sunburst.js',
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
