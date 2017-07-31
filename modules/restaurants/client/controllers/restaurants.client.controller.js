@@ -10,7 +10,6 @@
 
   function RestaurantsController (ReviewsService, $scope, $state, $window, Authentication, restaurant) {
     var vm = this;
-    console.log(vm.restaurant);
     vm.authentication = Authentication;
     vm.restaurant = restaurant;
     vm.error = null;

@@ -4,27 +4,40 @@
   </div>
   <div class="page-header"><h2>Restaurant Results Statistics</h2></div>
   <div class="group">
-    <div class="restaurants-by-review-count">
-      <div d3-bars bar-height="20" bar-padding="5" data="data" ng-if="dataHasLoaded"></div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input type="radio" ng-model="statistics" value="1">
+            <label>Top 10 Restaurants by Review Count</label><br />
+            <input type="radio" ng-model="statistics" value="2">
+            <label>Restaurant Distribution by State</label>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="restaurants-by-state">
-
+    <div class="wrapper page-header">
+      <!--<div class="restaurants-by-review-count" ng-show="statistics == 1">-->
+        <d3-bars bar-height="20" bar-padding="5" data="barData" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
+      <!--</div>-->
+      <!--<div class="restaurants-by-state" ng-show="statistics == 2">-->
+        <d3-donut data="pieData" ng-if="dataHasLoaded && statistics == 2" ng-show="statistics == 2"></d3-donut>
+      <!--</div>-->
     </div>
   </div>
   <div class="page-header"><h2>Search Results</h2></div>
 
   <div class="panel panel-default">
-      <div class="panel-body">
-          <form class="form-inline" role="form">
-            <div class="form-group">
-              <label style="margin-right:0;">Filter:</label>
-              <input type="search" class="form-control input-sm"
-                     ng-model="search" placeholder="Filter Restaurants..."/>
-                <button type="button" onclick="graph1()" class="btn btn-default">Load Statistics</button>
-            </div>
-          </form>
-      </div>
+    <div class="panel-body">
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <label style="margin-right:0;">Filter:</label>
+            <input type="search" class="form-control input-sm"
+               ng-model="search" placeholder="Filter Restaurants..."/>
+        </div>
+      </form>
     </div>
+  </div>
   <div class="list-group">
     <a ng-repeat="restaurant in vm.restaurants | filter:search as results"
        ui-sref="restaurants.view({ restaurantId: restaurant._id })"

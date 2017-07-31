@@ -13,9 +13,24 @@
     vm.params = params;
     var alt = $location.search();
     $scope.dataHasLoaded = false;
+    $scope.barData = [];
+    $scope.pieData = [];        // { label: 'state', value: count }
+    $scope.statistics = '2';
     vm.restaurants = RestaurantsService.query(alt, function() {
       var reverseSort = true;
-      $scope.data = orderBy(vm.restaurants, 'review_count', reverseSort).slice(0, 10);
+      $scope.barData = orderBy(vm.restaurants, 'review_count', reverseSort).slice(0, 10);
+      // reduce all restaurants states to object array of restaurant count per state
+      var states = [];
+      vm.restaurants.forEach(function(r) {
+        if (r.state in states) {
+          $scope.pieData.filter(function(e) {
+            return e.label == r.state;
+          }).value ++;
+        } else {
+          states[r.state] = 1;
+          $scope.pieData.push({ label: r.state, value: 1 });
+        }
+      });
       $scope.dataHasLoaded = true;
     });
   }
