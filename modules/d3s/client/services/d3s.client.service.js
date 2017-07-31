@@ -1,4 +1,4 @@
-angular.module('d3s', [])
+angular.module('d3s')
   .factory('D3sService', ['$document', '$q', '$rootScope',
     function($document, $q, $rootScope) {
       var d = $q.defer();

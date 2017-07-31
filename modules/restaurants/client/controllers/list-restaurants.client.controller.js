@@ -15,7 +15,7 @@
     $scope.dataHasLoaded = false;
     $scope.barData = [];
     $scope.pieData = [];        // { label: 'state', value: count }
-    $scope.statistics = '2';
+    $scope.statistics = '1';
     vm.restaurants = RestaurantsService.query(alt, function() {
       var reverseSort = true;
       $scope.barData = orderBy(vm.restaurants, 'review_count', reverseSort).slice(0, 10);
@@ -25,7 +25,7 @@
         if (r.state in states) {
           $scope.pieData.filter(function(e) {
             return e.label == r.state;
-          }).value ++;
+          })[0].value ++;
         } else {
           states[r.state] = 1;
           $scope.pieData.push({ label: r.state, value: 1 });

@@ -17,16 +17,11 @@
       </div>
     </div>
     <div class="wrapper page-header">
-      <!--<div class="restaurants-by-review-count" ng-show="statistics == 1">-->
-        <d3-bars bar-height="20" bar-padding="5" data="barData" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
-      <!--</div>-->
-      <!--<div class="restaurants-by-state" ng-show="statistics == 2">-->
-        <d3-donut data="pieData" ng-if="dataHasLoaded && statistics == 2" ng-show="statistics == 2"></d3-donut>
-      <!--</div>-->
+      <d3-bars data="barData" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
+      <d3-donut data="pieData" ng-if="dataHasLoaded && statistics == 2" ng-show="statistics == 2"></d3-donut>
     </div>
   </div>
   <div class="page-header"><h2>Search Results</h2></div>
-
   <div class="panel panel-default">
     <div class="panel-body">
       <form class="form-inline" role="form">

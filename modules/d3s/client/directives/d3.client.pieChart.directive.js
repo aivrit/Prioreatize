@@ -1,4 +1,4 @@
-angular.module('restaurants', ['d3s'])
+angular.module('restaurants')
   .directive('d3Donut', ['D3sService', function(D3sService) {
     return {
       restrict: 'EA',
@@ -9,8 +9,8 @@ angular.module('restaurants', ['d3s'])
         D3sService.d3().then(function (d3) {
           var margin = parseInt(attrs.margin) || 20;
           var svg = d3.select(element[0])
-            .append('svg')
-            .style('width', '100%');
+            .append("svg")
+            .append("g");
 
           // Browser onresize event
           window.onresize = function() {
@@ -43,8 +43,8 @@ angular.module('restaurants', ['d3s'])
             svg.append("g")
               .attr("class", "lines");
 
-            var width = d3.select(element[0]).node().offsetWidth - margin,
-              height = 250,
+            var width = 940,
+              height = 300,
               radius = Math.min(width, height) / 2;
 
             var pie = d3.layout.pie()
@@ -102,8 +102,8 @@ angular.module('restaurants', ['d3s'])
                 return d.data.label;
               });
 
-            function midAngle(d){
-              return d.startAngle + (d.endAngle - d.startAngle)/2;
+            function midAngle(d) {
+              return d.startAngle + (d.endAngle - d.startAngle) / 2;
             }
 
             text.transition().duration(1000)
@@ -115,7 +115,7 @@ angular.module('restaurants', ['d3s'])
                   var d2 = interpolate(t);
                   var pos = outerArc.centroid(d2);
                   pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                  return "translate("+ pos +")";
+                  return "translate(" + pos + ")";
                 };
               })
               .styleTween("text-anchor", function(d){
@@ -131,7 +131,7 @@ angular.module('restaurants', ['d3s'])
             text.exit()
               .remove();
 
-            /* ------- SLICE TO TEXT POLYLINES -------*/
+          //   /* ------- SLICE TO TEXT POLYLINES -------*/
 
             var polyline = svg.select(".lines").selectAll("polyline")
               .data(pie(data), key);
@@ -140,7 +140,7 @@ angular.module('restaurants', ['d3s'])
               .append("polyline");
 
             polyline.transition().duration(1000)
-              .attrTween("points", function(d){
+              .attrTween("points", function(d) {
                 this._current = this._current || d;
                 var interpolate = d3.interpolate(this._current, d);
                 this._current = interpolate(0);

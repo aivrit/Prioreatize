@@ -1,4 +1,4 @@
-angular.module('restaurants', ['d3s'])
+angular.module('restaurants')
   .directive('d3Bars', ['D3sService', function(D3sService) {
     return {
       restrict: 'EA',
