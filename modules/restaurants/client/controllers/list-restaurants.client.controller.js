@@ -29,14 +29,18 @@
           $scope.pieData.push({ label: r.state, value: 1 });
         }
       });
-      var tmp = $scope.pieData.slice();
-      $scope.pieData.push({ label: 'Other', value: 0 });
-      tmp.forEach(function (s) {
-        if (s.value < 5) {
-          $scope.pieData.find(function(t) { return t.label == 'Other'; }).value += s.value;
-          $scope.pieData.splice($scope.pieData.indexOf(s), 1);
-        }
-      });
+      if (vm.restaurants.length > 50) {
+        var tmp = $scope.pieData.slice();
+        $scope.pieData.push({label: 'Other', value: 0});
+        tmp.forEach(function (s) {
+          if (s.value < 5) {
+            $scope.pieData.find(function (t) {
+              return t.label == 'Other';
+            }).value += s.value;
+            $scope.pieData.splice($scope.pieData.indexOf(s), 1);
+          }
+        });
+      }
       $scope.dataHasLoaded = true;
     });
   }
