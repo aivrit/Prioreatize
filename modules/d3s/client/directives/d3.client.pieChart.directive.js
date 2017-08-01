@@ -61,7 +61,7 @@ angular.module('restaurants')
               .innerRadius(radius * 0.9)
               .outerRadius(radius * 0.9);
 
-            svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+            svg.attr("transform", "translate(" + width / 2 + "," + (height / 2 - 10) + ")");
 
             var key = function(d) { return d.data.label; };
 

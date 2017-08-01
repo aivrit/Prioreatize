@@ -2,7 +2,6 @@
   <div class="page-header">
     <h1>Restaurants</h1>
   </div>
-  <div class="page-header"><h2>Restaurant Results Statistics</h2></div>
   <div class="group">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -16,7 +15,7 @@
         </form>
       </div>
     </div>
-    <div class="wrapper page-header">
+    <div class="page-header">
       <d3-bars data="barData" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
       <d3-donut data="pieData" ng-if="dataHasLoaded && statistics == 2" ng-show="statistics == 2"></d3-donut>
     </div>
