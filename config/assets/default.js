@@ -30,6 +30,8 @@ module.exports = {
         'public/lib/ngmap/build/scripts/ng-map.min.js',
         'public/d3.min.js',
         'public/sunburst.js',
+        'public/lib/socket.io-client/dist/socket.io.js',
+
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

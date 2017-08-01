@@ -113,6 +113,9 @@ function searchByName(req, res, name, city) {
   });
 }
 
+exports.getRandomId = function getRandomRestaurant() {
+  return (Restaurant.find({}).limit(100).exec());
+}
 
 function getCategories(req, res) {
   Category.find().exec(function(err, categories) {

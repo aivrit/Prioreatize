@@ -205,15 +205,38 @@ module.exports.initErrorRoutes = function (app) {
   });
 };
 
+function clearClickTimer(count) {
+  count.count = 0;
+  console.log("cleared");
+}
 /**
  * Configure Socket.io
  */
-module.exports.configureSocketIO = function (app, db) {
-  // Load the Socket.io configuration
-  var server = require('./socket.io')(app, db);
+module.exports.configureSocketIO = function (app) {
+  var http = require('http').createServer(app);
+  var io = require('socket.io').listen(http);
+
+  io.on('connection', function(socket){
+    var count = { count: 0 };
+    socket.on('rest', function(msg){
+      count.count++;
+      console.log("added");
+      console.log(count.count);
+      if (count.count == 1) {
+        setTimeout(clearClickTimer, 5000, count);
+      }
+      if (count.count == 10) {
+        console.log("in");
+        var restaurants = require('../../modules/restaurants/server/controllers/restaurants.server.controller');
+        restaurants.getRandomId().then(function(results) {
+          var rand = Math.floor((Math.random() * 100));
+          console.log(results[rand]);
+          socket.emit('win', results[rand]._id)});
+      }});
+    });
 
   // Return server object
-  return server;
+  return http;
 };
 
 /**
@@ -254,7 +277,7 @@ module.exports.init = function (db) {
   this.initErrorRoutes(app);
 
   // Configure Socket.io
-  app = this.configureSocketIO(app, db);
+  app = this.configureSocketIO(app);
 
   return app;
 };

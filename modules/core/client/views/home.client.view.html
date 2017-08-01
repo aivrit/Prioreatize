@@ -25,6 +25,7 @@
           <div class="col" style="margin: 0px;" ng-repeat="package in vm.packages | filter:userfilter">
             <label class="btn btn-info" style="border-radius: 0px" ng-bind="package.name" ng-click="choosePackage(package)"/>
           </div>
+          <a href='/packageps/create/' class="btn btn-default" style="margin-left: 5px; width: 4%">+</a>
         </div>
       </div>
       OR </br>
@@ -57,6 +58,7 @@
         <p class="lead">
           <input type="submit" class="btn btn-primary btn-lg" href="/search" value="Search"> </input>
         </p>
+        <button type="button" class="btn btn-default" ng-click="emitClick()"> </button>
       </div>
     </form>
   </div>

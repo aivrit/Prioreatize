@@ -5,11 +5,11 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['CategoriesService', 'PackagepsService', '$scope', 'Authentication'];
+  HomeController.$inject = ['CategoriesService', 'PackagepsService', '$scope', 'Authentication', 'Socket'];
 
-  function HomeController(CategoriesService, PackagepsService, $scope, Authentication) {
+  function HomeController(CategoriesService, PackagepsService, $scope, Authentication, Socket) {
     var vm = this;
-
+    vm.io = Socket;
     vm.packages = PackagepsService.query();
     vm.categories = CategoriesService.query();
     $scope.choosePackage = function choosePackage(pkg) {
@@ -38,6 +38,12 @@
       }
       return true;
     };
+
+    $scope.emitClick = function emitClick(){
+      vm.io.emit('rest', 'click');
+    };
+    vm.io.on('win', function(data) {window.location.href = "/restaurants/" + data;});
+
 
     $scope.changeRadio = function changeRadio(id) {
         document.getElementById(id).parentElement.className += " cradio";
