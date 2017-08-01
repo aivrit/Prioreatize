@@ -40,7 +40,7 @@
       }
 
       function successCallback(res) {
-        $state.go('packageps.view', {
+        $state.go('home', {
           packagepId: res._id
         });
       }
