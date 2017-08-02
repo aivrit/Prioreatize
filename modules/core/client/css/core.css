@@ -46,20 +46,92 @@ a:hover .header-profile-image {
   display: inline;
 }
 div.site-header {
-	/*background: #0e8dbc;*/
-	/*color: white;*/
-	/*text-shadow: 0 1px 0 #ccc,*/
-	/*0 2px 0 #c9c9c9,*/
-	/*0 3px 0 #bbb,*/
-	/*0 4px 0 #b9b9b9,*/
-	/*0 5px 0 #aaa,*/
-	/*0 6px 1px rgba(0,0,0,.1),*/
-	/*0 0 5px rgba(0,0,0,.1),*/
-	/*0 1px 3px rgba(0,0,0,.3),*/
-	/*0 3px 5px rgba(0,0,0,.2),*/
-	/*0 5px 10px rgba(0,0,0,.25),*/
-	/*0 10px 10px rgba(0,0,0,.2),*/
-	/*0 20px 20px rgba(0,0,0,.15);*/
 	text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+div.packages {
+	padding-left: 250px;
+	padding-right: 250px;
+}
+a.btn-new-pkg {
+	border-radius: 40px;
+	border: 1px solid #121416;
+	transition: all 0.2s ease-in-out;
+	font-size: 16px;
+	padding: 1.2vh 1.5vw;
+	color: #121416;
+	font-weight: bold;
+}
+label.btn-pkg {
+	border-radius: 10px;
+	border: 1px solid #121416;
+	transition: all 0.3s ease;
+	font-size: 16px;
+	padding: 1.2vh 1.5vw;
+	color: #121416;
+	background: transparent;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-weight: normal;
+}
+label.btn-pkg:hover {
+	box-shadow: inset 0 0 0 5px #53a7ea;
+}
+a.btn-new-pkg:hover {
+	background: #53a7ea;
+	color: white;
+}
+div.package-container {
+	margin-top: 30px	;
+}
+label.btn-category {
+	border-radius: 10px;
+	border: 1px solid #121416;
+	transition: all 0.2s ease-in-out;
+	font-size: 16px;
+	color: #121416;
+	background: transparent;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 200px;
+	height: auto;
+	padding: 0.4vh;
+	float: left;
+	font-weight: normal;
+}
+h4.category-filtering {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+div.row label {
+	margin-bottom: 0;
+}
+input.btn-submit {
+	border-radius: 40px;
+	border: 1px solid #121416;
+	transition: all 0.2s ease-in-out;
+	font-size: 16px;
+	padding: 1.2vh 1.5vw;
+	color: #121416;
+	background-color: transparent;
+	font-weight: bold;
+}
+input.btn-submit:hover {
+	background: #53a7ea;
+	color: white;
+}
+button.btn-submit {
+	border-radius: 40px;
+	border: 1px solid #121416;
+	transition: all 0.2s ease-in-out;
+	font-size: 16px;
+	padding: 1.2vh 1.5vw;
+	color: #121416;
+	background-color: transparent;
+	font-weight: bold;
+}
+button.btn-submit:hover {
+	background: #53a7ea;
+	color: white;
 }
 
