@@ -17,9 +17,10 @@
     $scope.pieData = [];        // { label: 'state', value: count }
     $scope.statistics = '1';
     vm.restaurants = RestaurantsService.query(alt, function() {
+      // Bar Graph data by restaurants review count
       var reverseSort = true;
       $scope.barData = orderBy(vm.restaurants, 'review_count', reverseSort).slice(0, 10);
-      // reduce all restaurants states to object array of restaurant count per state
+      // Donut Graph data by state
       var states = [];
       vm.restaurants.forEach(function(r) {
         if (r.state in states) {
@@ -29,11 +30,14 @@
           $scope.pieData.push({ label: r.state, value: 1 });
         }
       });
+      // Group all states with small count into Other
       if (vm.restaurants.length > 50) {
         var tmp = $scope.pieData.slice();
-        $scope.pieData.push({label: 'Other', value: 0});
+        var distFactor = 0;
+        $scope.pieData.length > 12 ? distFactor = 8 : distFactor = 6;
+        $scope.pieData.push({ label: 'Other', value: 0 });
         tmp.forEach(function (s) {
-          if (s.value < 8) {
+          if (s.value < distFactor) {
             $scope.pieData.find(function (t) {
               return t.label == 'Other';
             }).value += s.value;
