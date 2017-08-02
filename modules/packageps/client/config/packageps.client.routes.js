@@ -38,14 +38,13 @@
       })
       .state('packageps.edit', {
         url: '/:packagepId/edit',
-        templateUrl: 'modules/packageps/client/views/form-packagep.client.view.html',
+        templateUrl: '/modules/packageps/client/views/form-packagep.client.view.html',
         controller: 'PackagepsController',
         controllerAs: 'vm',
         resolve: {
           packagepResolve: getPackagep
         },
         data: {
-          roles: ['user', 'admin'],
           pageTitle: 'Edit Packagep {{ packagepResolve.name }}'
         }
       })
