@@ -83,20 +83,33 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Packagep
+ * Delete a Package
  */
 exports.delete = function(req, res) {
-  var packagep = req.packagep;
-
-  packagep.remove(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(packagep);
+  var promise = Packagep.findOne({_id: req.body.id}).exec();
+  promise.then(
+    function (packagep, err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        if (!packagep) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage("ID not found.")
+          });}
+        packagep.remove(function(err) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.jsonp([]);
+          }
+        });
+      }
     }
-  });
+  );
 };
 
 /**

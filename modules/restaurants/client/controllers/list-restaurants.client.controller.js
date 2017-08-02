@@ -13,10 +13,12 @@
     vm.params = params;
     var alt = $location.search();
     $scope.dataHasLoaded = false;
+    $scope.listHasLoaded = false;
     $scope.barData = [];
     $scope.pieData = [];        // { label: 'state', value: count }
     $scope.statistics = '1';
     vm.restaurants = RestaurantsService.query(alt, function() {
+      $scope.listHasLoaded = true;
       // Bar Graph data by restaurants review count
       var reverseSort = true;
       $scope.barData = orderBy(vm.restaurants, 'review_count', reverseSort).slice(0, 10);

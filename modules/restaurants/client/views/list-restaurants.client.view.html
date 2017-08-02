@@ -41,4 +41,7 @@
       </a>
     </div>
   </div>
+  <i ng-if="!listHasLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+  <h3 ng-if="listHasLoaded && vm.restaurants.length == 0"> We haven't found any restaurants! try expanding your search a little..</h3>
 </section>
