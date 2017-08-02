@@ -15,15 +15,7 @@
     vm.packagep = packagep;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
-
-    // Remove existing Packagep
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.packagep.$remove($state.go('packageps.list'));
-      }
-    }
 
     // Save Packagep
     function save(isValid) {
