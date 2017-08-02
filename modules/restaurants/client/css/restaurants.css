@@ -88,8 +88,11 @@ div.rating-summary {
 	margin-bottom: 40px;
 }
 div.rating-summary-container {
-	/*text-align: center;*/
-	/*margin-bottom: 20px;*/
+	column-count: 3;
+	font-size: 15px;
+	column-gap: 20px;
+	column-rule-style: solid;
+	column-rule-color: #ebebeb;
 }
 div.rating-summary-container-up {
 	display: flex;

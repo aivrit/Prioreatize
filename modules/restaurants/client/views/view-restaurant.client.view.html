@@ -79,7 +79,8 @@
   </div>
   </div>
   <div class="group">
-    <d3-bars class="restaurant-rating-graph" data="reviewsGroupByStars" filter="id" ng-if="xxx"></d3-bars>
+    <label style="font-size: 19px;">Reviews Star Rating Count</label><br/>
+    <d3-bars class="restaurant-rating-graph" data="reviewsGroupByStars" count="count" name="_id" bar-height="35" ng-if="dataLoaded"></d3-bars>
     <aside class="overview-map">
       <map center="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]" zoom="4">
         <marker position="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]"/>

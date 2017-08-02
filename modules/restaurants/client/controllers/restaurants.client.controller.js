@@ -6,9 +6,9 @@
     .module('restaurants')
     .controller('RestaurantsController', RestaurantsController);
 
-  RestaurantsController.$inject = ['ReviewsService', 'D3sService', '$scope', '$location', '$state', '$window', 'Authentication', 'restaurantResolve'];
+  RestaurantsController.$inject = ['ReviewsService', 'D3sService', '$scope', '$location', '$state', '$window', 'Authentication', 'restaurantResolve', 'orderByFilter'];
 
-  function RestaurantsController (ReviewsService, D3sService, $scope, $location, $state, $window, Authentication, restaurant) {
+  function RestaurantsController (ReviewsService, D3sService, $scope, $location, $state, $window, Authentication, restaurant, orderBy) {
     var vm = this;
     vm.authentication = Authentication;
     vm.restaurant = restaurant;
@@ -25,11 +25,13 @@
       return count;
     };
 
-    $scope.xxx = false;
-
+    $scope.dataLoaded = false;
+    $scope.reviewsGroupByStars = [];
     vm.reviews = ReviewsService.getReviews().query({ id: restaurant._id });
     vm.reviewsGroupByStars = ReviewsService.getReviewsGroupByStars().query({ id: restaurant._id }, function () {
-      $scope.xxx = true;
+      var reverseSort = true;
+      $scope.reviewsGroupByStars = orderBy(vm.reviewsGroupByStars, '_id', reverseSort);
+      $scope.dataLoaded = true;
     });
 
     // Remove existing Restaurant

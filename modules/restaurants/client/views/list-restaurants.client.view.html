@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="page-header">
-        <d3-bars data="barData" filter="review_count" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
+        <d3-bars data="barData" count="review_count" name="name" ng-if="dataHasLoaded && statistics == 1" ng-show="statistics == 1"></d3-bars>
         <d3-donut data="pieData" ng-if="dataHasLoaded && statistics == 2" ng-show="statistics == 2"></d3-donut>
       </div>
     </div>

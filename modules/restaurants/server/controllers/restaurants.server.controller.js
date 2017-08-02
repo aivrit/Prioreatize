@@ -118,7 +118,7 @@ exports.getRandomId = function getRandomRestaurant() {
 }
 
 function getCategories(req, res) {
-  Category.find().exec(function(err, categories) {
+  Category.find().limit(100).exec(function(err, categories) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -187,7 +187,7 @@ function multiplyAndSum(req, res, joint_results, rank_names, categories_importan
     return obj2.sum - obj1.sum;
   });
   joint_results = joint_results.filter((resta, index, self) => self.findIndex((t) => {return t.name == resta.name && t._id.id[0] == resta._id.id[0];}) === index);
-  res.jsonp(joint_results);
+  res.jsonp(joint_results.slice(0,100));
 }
 
 function queryOne(rank_name, limit_num) {

@@ -36,7 +36,7 @@
       if (vm.restaurants.length > 50) {
         var tmp = $scope.pieData.slice();
         var distFactor = 0;
-        $scope.pieData.length > 12 ? distFactor = 8 : distFactor = 6;
+        $scope.pieData.length > 10 ? distFactor = 10 : distFactor = 6;
         $scope.pieData.push({ label: 'Other', value: 0 });
         tmp.forEach(function (s) {
           if (s.value < distFactor) {
