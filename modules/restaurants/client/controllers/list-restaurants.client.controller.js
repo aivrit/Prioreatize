@@ -33,7 +33,7 @@
         var tmp = $scope.pieData.slice();
         $scope.pieData.push({label: 'Other', value: 0});
         tmp.forEach(function (s) {
-          if (s.value < 5) {
+          if (s.value < 8) {
             $scope.pieData.find(function (t) {
               return t.label == 'Other';
             }).value += s.value;
