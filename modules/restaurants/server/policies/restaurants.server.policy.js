@@ -28,25 +28,25 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/restaurants',
-      permissions: ['get', 'post']
+      permissions: ['*']
     }, {
       resources: '/api/restaurants/search',
       permissions: ['*']
     }, {
       resources: '/api/restaurants/:restaurantId',
-      permissions: ['get']
+      permissions: ['*']
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/restaurants',
-      permissions: ['get']
+      permissions: ['*']
     }, {
       resources: '/api/restaurants/search',
       permissions: ['*']
     }, {
       resources: '/api/restaurants/:restaurantId',
-      permissions: ['get']
+      permissions: ['*']
     }]
   }]);
 };

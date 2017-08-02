@@ -12,6 +12,9 @@ module.exports = function(app) {
     .get(reviews.list)
     .post(reviews.create);
 
+  app.route('/api/reviews/groupByStars').all(reviewsPolicy.isAllowed)
+    .get(reviews.group);
+
   app.route('/api/reviews/:reviewId').all(reviewsPolicy.isAllowed)
     .get(reviews.read)
     .put(reviews.update)

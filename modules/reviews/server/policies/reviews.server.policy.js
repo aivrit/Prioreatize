@@ -20,24 +20,33 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/reviews/:reviewId',
       permissions: '*'
+    }, {
+      resources: '/api/reviews/groupByStars',
+      permissions: ['*']
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/reviews',
-      permissions: ['get', 'post']
+      permissions: ['*']
     }, {
       resources: '/api/reviews/:reviewId',
       permissions: ['get']
+    }, {
+      resources: '/api/reviews/groupByStars',
+      permissions: ['*']
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/reviews',
-      permissions: ['get']
+      permissions: ['*']
     }, {
       resources: '/api/reviews/:reviewId',
       permissions: ['get']
+    }, {
+      resources: '/api/reviews/groupByStars',
+      permissions: ['*']
     }]
   }]);
 };

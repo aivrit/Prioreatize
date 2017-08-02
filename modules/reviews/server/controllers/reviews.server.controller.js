@@ -79,6 +79,33 @@ exports.delete = function(req, res) {
 };
 
 /**
+ * Group reviews By star rating
+ */
+exports.group = function(req, res) {
+  var restaurant_id = req.query.id;
+  Restaurant.findById(restaurant_id).exec(function (err, restaurant) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      var restaurant_business_id = restaurant._doc.business_id;
+      Review.aggregate([
+        {
+          $match: { 'business_id': restaurant_business_id } }, { $group: { _id: '$stars', count: { $sum: 1 } } }], function(err, reviews) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.jsonp(reviews);
+        }
+      });
+    }
+  });
+};
+
+/**
  * List of Reviews
  */
 exports.list = function(req, res) {
@@ -90,7 +117,7 @@ exports.list = function(req, res) {
       });
     } else {
       var restaurant_business_id = restaurant._doc.business_id;
-      Review.find({ 'business_id': restaurant_business_id }).exec(function (err, reviews) {
+      Review.find({ 'business_id': restaurant_business_id }).group.exec(function (err, reviews) {
         if (err) {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(err)
@@ -101,16 +128,6 @@ exports.list = function(req, res) {
       });
     }
   });
-
-  // Review.find().sort('-created').populate('user', 'displayName').exec(function(err, reviews) {
-  //   if (err) {
-  //     return res.status(400).send({
-  //       message: errorHandler.getErrorMessage(err)
-  //     });
-  //   } else {
-  //     res.jsonp(reviews);
-  //   }
-  // });
 };
 
 /**

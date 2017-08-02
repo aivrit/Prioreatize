@@ -4,17 +4,31 @@
 
   angular
     .module('reviews')
-    .factory('ReviewsService', ReviewsService);
+    .service('ReviewsService', ReviewsService);
 
   ReviewsService.$inject = ['$resource'];
 
   function ReviewsService($resource) {
-    return $resource('/api/reviews/:reviewId', {
-      reviewId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
+    var urlBase = '/api/reviews/';
+
+    this.getReviews = function() {
+      return $resource(urlBase + ':reviewId', {
+        reviewId: '@_id'
+      }, {
+        update: {
+          method: 'PUT'
+        }
+      });
+    };
+
+    this.getReviewsGroupByStars = function () {
+      return $resource(urlBase + 'groupByStars', {
+        update: {
+          method: 'PUT'
+        }
+      });
+    };
+
+
   }
 }());

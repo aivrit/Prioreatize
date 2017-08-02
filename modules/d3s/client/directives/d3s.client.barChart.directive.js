@@ -12,7 +12,8 @@ angular.module('restaurants')
             barPadding = parseInt(attrs.barPadding) || 5;
           var svg = d3.select(element[0])
             .append('svg')
-            .style('width', '100%');
+            .style('width', '100%')
+            .attr('class', 'barChart');
 
           // Browser onresize event
           window.onresize = function() {
