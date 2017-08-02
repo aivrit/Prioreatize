@@ -3,7 +3,8 @@ angular.module('restaurants')
     return {
       restrict: 'EA',
       scope: {
-        data: '='
+        data: '=',
+        filter: '@'
       },
       link: function(scope, element, attrs) {
         D3sService.d3().then(function(d3) {
@@ -48,7 +49,7 @@ angular.module('restaurants')
               // our xScale
               xScale = d3.scale.linear()
                 .domain([0, d3.max(data, function(d) {
-                  return d.review_count;
+                  return d[scope.filter];
                 })])
                 .range([0, width]);
 
@@ -67,15 +68,15 @@ angular.module('restaurants')
               .attr('y', function(d, i) {
                 return i * (barHeight + barPadding);
               })
-              .attr('fill', function(d) { return color(d.review_count); })
+              .attr('fill', function(d) { return color(d[scope.filter]); })
               .transition()
               .duration(1000)
               .attr('width', function(d) {
-                return xScale(d.review_count);
+                return xScale(d[scope.filter]);
               });
 
             chart.append('text')
-              .text(function(d) { return d.name + ' (' + d.review_count + ')'; })
+              .text(function(d) { return d.name + ' (' + d[scope.filter] + ')'; })
               .attr('x', Math.round(margin / 2) + 10)
               .attr('y', function(d, i) {
                 return i * (barHeight + barPadding) + 15;

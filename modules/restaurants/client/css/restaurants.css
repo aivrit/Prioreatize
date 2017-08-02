@@ -133,7 +133,7 @@ div.group {
 	clear: both;
 	*zoom: 1;
 }
-div.overview-content {
+d3-bars.restaurant-rating-graph {
 	float: left;
 	width: 63%;
 }

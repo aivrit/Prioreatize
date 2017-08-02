@@ -17,7 +17,6 @@
 
   </div>
   <div class="page-header"><h2>Overview</h2></div>
-  <div class="group">
   <div class="overview-content">
     <div class="restaurant-rating">
     <span class="score">{{vm.restaurant.stars}}</span>
@@ -79,11 +78,13 @@
     </div>
   </div>
   </div>
-  <aside class="overview-map">
-    <map center="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]" zoom="4">
-      <marker position="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]"/>
-    </map>
-  </aside>
+  <div class="group">
+    <d3-bars class="restaurant-rating-graph" data="reviewsGroupByStars" filter="id" ng-if="xxx"></d3-bars>
+    <aside class="overview-map">
+      <map center="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]" zoom="4">
+        <marker position="[{{vm.restaurant.latitude}}, {{vm.restaurant.longitude}}]"/>
+      </map>
+    </aside>
   </div>
   <div class="restaurant-reviews">
     <h2>Reviews</h2>

@@ -117,7 +117,7 @@ exports.list = function(req, res) {
       });
     } else {
       var restaurant_business_id = restaurant._doc.business_id;
-      Review.find({ 'business_id': restaurant_business_id }).group.exec(function (err, reviews) {
+      Review.find({ 'business_id': restaurant_business_id }).exec(function (err, reviews) {
         if (err) {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(err)
